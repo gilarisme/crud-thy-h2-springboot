@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title data-layout-title-pattern="$LAYOUT_TITLE | $CONTENT_TITLE">Nazumi!</title>
+
+    <!-- Bootstrap -->
+    <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="/webjars/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="/webjars/nprogress/nprogress.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="/static/css/custom.min.css" rel="stylesheet">
+</head>
+
+  <body class="login">
+    <div>
+      <a class="hiddenanchor" id="signin"></a>
+
+      <div class="login_wrapper">
+        <div class="animate form login_form">
+          <section class="login_content">
+            <form action="#" th:action="@{/adduser}" th:object="${user}" method="post">
+              <h1>Register Form</h1>
+              <div>
+                <input type="text" class="form-control" placeholder="Username" required="" th:field="*{name}" id="name"/>
+              </div>
+              <div>
+                <input type="text" class="form-control" placeholder="Email" required="" th:field="*{email}" id="email"/>
+              </div>
+              <div>
+                <input type="text" class="form-control" placeholder="Role" required="" th:field="*{role}" id="role"/>
+              </div>
+              <div>
+                <input type="password" class="form-control" placeholder="Password" required="" th:field="*{password}" id="password" />
+              </div>
+              <div lass="col-md-9 col-sm-9  offset-md-3">
+                <button class="btn btn-success" type="submit" value="Submit">Submit</button>
+              </div>
+              <div class="clearfix"></div>
+
+              <div class="separator">
+                <div>
+                   <h1><i class="fa fa-smile-o"></i> Hai Tim</h1>
+                  <p>Sebelum Bekerja Mari Ucapkan Bismillah</p>
+                </div>
+              </div>
+            </form>
+          </section>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
