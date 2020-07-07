@@ -1,8 +1,13 @@
 package net.crunchdroid.controller;
 
 import javax.validation.Valid;
+
+import java.util.Arrays;
 import java.util.List;
+
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,12 +17,23 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import net.crunchdroid.entity.Role;
 import net.crunchdroid.entity.User;
+import net.crunchdroid.entity.UserDTO;
 @Controller
 public class UserController {
 
 	@Autowired
 	net.crunchdroid.repo.userRepo userRepo;
+	
+	@Autowired
+	net.crunchdroid.repo.roleRepo roleRepo;
+	
+	@Autowired
+    private PasswordEncoder passwordEncoder;
+	
+	private User user;
+	
 	
     @GetMapping("/register")
     public String register(User user) {
@@ -34,12 +50,17 @@ public class UserController {
     }
      
     @PostMapping("/adduser")
-    public String addUser(@Valid User user, BindingResult result, Model model) {
+    public String addUser(@Valid UserDTO user, BindingResult result, Model model) {
+    	ModelMapper modelMapper = new ModelMapper(); 	
         if (result.hasErrors()) {
-            return "add-user";
+        	return "register";
+            
         }
         
-        userRepo.save(user);
+        User users = new User();
+        users = modelMapper.map(user, User.class);
+        users.setPassword(passwordEncoder.encode(user.getPassword()));
+        userRepo.save(users);
         model.addAttribute("users", userRepo.findAll());
         
         return "redirect:/user";
@@ -54,13 +75,14 @@ public class UserController {
     }
     
     @PostMapping("/updateUser/{id}")
-    public String updateUser(@PathVariable("id") long id, @Valid User user, 
+    public String updateUser(@PathVariable("id") Integer id, @Valid User user, 
       BindingResult result, Model model) {
         if (result.hasErrors()) {
             user.setId(id);
             return "user";
         }
-             
+        
+        user.setPassword(passwordEncoder.encode(user.getPassword()));     
         userRepo.save(user);
         model.addAttribute("users", userRepo.findAll());
         return "redirect:/user";
