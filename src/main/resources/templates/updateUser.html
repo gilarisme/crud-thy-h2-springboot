@@ -27,19 +27,27 @@
       <div class="login_wrapper">
         <div class="animate form login_form">
           <section class="login_content">
-            <form action="#" th:action="@{/updateUser/{id}(id=${user.id})}" th:object="${user}" method="post">
+            <form action="#" th:action="@{/updateUser/{id}(id=${id})}" th:object="${user}" method="post">
               <h1>Register Form</h1>
               <div>
-                <input type="text" class="form-control" placeholder="Username" required="" th:field="*{name}" id="name"/>
+                <input type="text" class="form-control" placeholder="Username" required="" th:field="*{userName}" id="userName"/>
+              </div>
+              <div>
+                <input type="text" class="form-control" placeholder="Nama Lengkap" required="" th:field="*{namaLengkap}" id="namaLengkap"/>
               </div>
               <div>
                 <input type="text" class="form-control" placeholder="Email" required="" th:field="*{email}" id="email"/>
               </div>
               <div>
-                <input type="text" class="form-control" placeholder="Role" required="" th:field="*{role}" id="role"/>
-              </div>
+              <select th:name="role" th:id="role" class="form-control" required>
+                         <option value="">Pilih Role</option>
+                         <option th:each="item: ${roles}" th:value="${item.idRole}"
+                                 th:text="${item.roleName}"></option>
+               </select>
+               </div>
+               <br>
               <div>
-                <input type="password" class="form-control" placeholder="Password" required="" th:field="*{password}" id="password" />
+                <input type="password" class="form-control" placeholder="Password" required="" th:field="*{userPassword}" id="userPassword" />
               </div>
               <div lass="col-md-9 col-sm-9  offset-md-3">
                 <button class="btn btn-success" type="submit" value="Submit">Update</button>

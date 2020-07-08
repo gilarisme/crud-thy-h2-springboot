@@ -1,54 +1,45 @@
 package net.crunchdroid.entity;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import lombok.NoArgsConstructor;
 
-
-@Setter
-@Getter
+@EqualsAndHashCode(callSuper = true)
 @Entity
+@Table(name = "m_user")
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 
-@Table(name = "USER")
-public class User implements Serializable {
+public class User extends BaseEntity implements Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -6337544586413989864L;
 
-	@Id
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-     
-    private String name;
-     
+    @Access(AccessType.PROPERTY)
+    private String userName;
+    private String userPassword;
     private String email;
-    
-    private String role;
-    
-    private String password;
+    private String namaLengkap;
+    private Integer status;
+    private String apiToken;
+    private Timestamp lastLogin;
 
-	public User(long id, String name, String email, String role, String password) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.email = email;
-		this.role = role;
-		this.password = password;
-	}
+    @javax.persistence.Transient
+    private String passwordConfirm;
+    @javax.persistence.Transient
+    private String type;
 
-	public User() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+    @ManyToOne
+    @JoinColumn(name = "fk_id_role", referencedColumnName = "id_role")
+    private Role role;
 
 	
 }

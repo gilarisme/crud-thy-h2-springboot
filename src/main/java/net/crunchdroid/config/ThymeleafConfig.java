@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.templateresolver.FileTemplateResolver;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 public class ThymeleafConfig {
@@ -39,5 +41,10 @@ public class ThymeleafConfig {
         templateEngine.setTemplateResolver(xmlTemplateResolver(appCtx));
         return templateEngine;
     }
+    
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+	   return new BCryptPasswordEncoder();
+   }
 
 }
