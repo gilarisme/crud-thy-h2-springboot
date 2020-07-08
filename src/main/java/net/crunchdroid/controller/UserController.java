@@ -90,6 +90,6 @@ public class UserController {
         User user = userRepo.findById(id);
         userRepo.delete(user);
         model.addAttribute("users", userRepo.findAll());
-        return "user";
+        return "redirect:/user";
     }
 }

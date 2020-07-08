@@ -1,11 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
+ <!DOCTYPE html>
+<html lang="en" data-layout-decorate="~{fragments/layout}">
+<head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title data-layout-title-pattern="$LAYOUT_TITLE | $CONTENT_TITLE">Nazumi!</title>
 
@@ -20,51 +19,59 @@
     <link href="/static/css/custom.min.css" rel="stylesheet">
 </head>
 
-  <body class="login">
-    <div>
-      <a class="hiddenanchor" id="signin"></a>
-
-      <div class="login_wrapper">
-        <div class="animate form login_form">
-          <section class="login_content">
-            <form action="#" th:action="@{/adduser}" th:object="${user}" method="post">
-              <h1>Register Form</h1>
-              <div>
-                <input type="text" class="form-control" th:id="userName" th:name="userName" maxlength="30" required placeholder="user name">
-              </div>
-              <div>
-                <input type="email" class="form-control" th:id="email" th:name="email"
-                                   maxlength="30" required placeholder="email">
-              </div>
-              <div><input type="text" class="form-control" th:id="namaLengkap" th:name="namaLengkap"
-                                   maxlength="50" required placeholder="Nama Lengkap"></div>
-              <div>
-              <select th:name="role" th:id="role" class="form-control" required>
-                         <option value="">Pilih Role</option>
-                         <option th:each="item: ${roles}" th:value="${item.idRole}"
-                                 th:text="${item.roleName}"></option>
-               </select>
-               </div>
-               <br>
-              <div>
-                <input type="password" class="form-control" th:id="userPassword" th:name="userPassword"
-                                   minlength="8" maxlength="32" required placeholder="password">
-              </div>
-              <div lass="col-md-9 col-sm-9  offset-md-3">
-                <button class="btn btn-success" type="submit" value="Submit">Submit</button>
-              </div>
-              <div class="clearfix"></div>
-
-              <div class="separator">
-                <div>
-                   <h1><i class="fa fa-smile-o"></i> Hai Tim</h1>
-                  <p>Sebelum Bekerja Mari Ucapkan Bismillah</p>
+<body>
+	<div class="right_col" role="main" data-layout-fragment="content">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                   <!-- content -->
+                    <div class="x_content">
+						    <div>
+						      <a class="hiddenanchor" id="signin"></a>
+						      <div class="login_wrapper">
+						        <div class="animate form login_form">
+						          <section class="login_content">
+						            <form action="#" th:action="@{/adduser}" th:object="${user}" method="post">
+						              <h1>Register Form</h1>
+						              <div>
+						                <input type="text" class="form-control" th:id="userName" th:name="userName" maxlength="30" required placeholder="user name">
+						              </div>
+						              <div>
+						                <input type="email" class="form-control" th:id="email" th:name="email"
+						                                   maxlength="30" required placeholder="email">
+						              </div>
+						              <div><input type="text" class="form-control" th:id="namaLengkap" th:name="namaLengkap"
+						                                   maxlength="50" required placeholder="Nama Lengkap"></div>
+						              <div>
+						              <select th:name="role" th:id="role" class="form-control" required>
+						                         <option value="">Pilih Role</option>
+						                         <option th:each="item: ${roles}" th:value="${item.idRole}"
+						                                 th:text="${item.roleName}"></option>
+						               </select>
+						               </div>
+						               <br>
+						              <div>
+						                <input type="password" class="form-control" th:id="userPassword" th:name="userPassword"
+						                                   minlength="8" maxlength="32" required placeholder="password">
+						              </div>
+						              <div lass="col-md-9 col-sm-9  offset-md-3">
+						                <button class="btn btn-success" type="submit" value="Submit">Submit</button>
+						              </div>
+						              <div class="clearfix"></div>
+						
+						              <div class="separator">
+						                <div>
+						                   <h1><i class="fa fa-smile-o"></i> Hai Tim</h1>
+						                  <p>Sebelum Bekerja Mari Ucapkan Bismillah</p>
+						                </div>
+						              </div>
+						          </form>
+						       </section>
+						    </div>
+						  </div>
+						</div>
+                    </div>
                 </div>
-              </div>
-            </form>
-          </section>
+            </div>
         </div>
-      </div>
-    </div>
-  </body>
+</body>
 </html>
