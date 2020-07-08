@@ -10,7 +10,7 @@ import org.springframework.context.annotation.PropertySources;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 @Configuration
-@ComponentScan(basePackages = "net.crunchdroid.controller")
+@ComponentScan(basePackages = "net.crunchdroid")
 @PropertySources({
 		@PropertySource("file:/opt/application.properties"),
 		@PropertySource("file:/opt/path.properties")})

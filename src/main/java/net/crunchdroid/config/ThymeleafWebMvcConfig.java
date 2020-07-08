@@ -1,6 +1,8 @@
 package net.crunchdroid.config;
 
 import nz.net.ultraq.thymeleaf.LayoutDialect;
+
+import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.ViewResolver;
@@ -62,6 +64,11 @@ public class ThymeleafWebMvcConfig extends WebMvcConfigurerAdapter {
     	.addResourceHandler("/webjars/**")
     	.addResourceLocations("classpath:/META-INF/resources/webjars/", "resources/", "/webjars/")
     	.resourceChain(true).addResolver(new WebJarsResourceResolver());
+    }
+    
+    @Bean
+    public ModelMapper modelMapper() {
+        return new ModelMapper();
     }
 
 }
