@@ -6,9 +6,11 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,8 +34,8 @@ public class UserController {
     private PasswordEncoder passwordEncoder;
 	
     @GetMapping("/register")
-    public String register(User user, Model model) {
-    	
+    public String register(ModelMap model, @AuthenticationPrincipal User principal) {
+    	model.addAttribute("principal", principal);
     	model.addAttribute("roles", roleService.findAll());
     	
         return "register";
