@@ -1,8 +1,15 @@
 package net.crunchdroid.controller;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import net.crunchdroid.entity.User;
+
 
 /**
  * @author CrunchDroid
@@ -10,13 +17,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class PageController {
 	
-	@GetMapping("/login")
-    public String login() {
-        return "login";
+	
+	@RequestMapping(value = {"", "/"}, method = RequestMethod.GET)
+    public String index(ModelMap modelMap, @AuthenticationPrincipal User principal) {
+        return "redirect:/plain-page";
     }
 	
-    @GetMapping("/plain-page")
-    public String plainPage() {
+    @RequestMapping(value = {"plain-page"}, method = RequestMethod.GET)
+    public String plainPage(ModelMap modelMap, @AuthenticationPrincipal User principal) {
         return "plain-page";
     }
 

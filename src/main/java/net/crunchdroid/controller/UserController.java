@@ -17,15 +17,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import net.crunchdroid.entity.User;
-import net.crunchdroid.repo.roleRepo;
+import net.crunchdroid.repo.RoleRepo;
 @Controller
 public class UserController {
 
 	@Autowired
-	net.crunchdroid.repo.userRepo userRepo;
+	net.crunchdroid.repo.UserRepo userRepo;
 	
 	@Autowired
-    roleRepo roleService;
+    RoleRepo roleService;
 
 	
 	@Autowired

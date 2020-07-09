@@ -6,9 +6,11 @@ import org.springframework.stereotype.Repository;
 import net.crunchdroid.entity.User;
 
 @Repository
-public interface userRepo extends CrudRepository<User, Long> {
+public interface UserRepo extends CrudRepository<User, Long> {
 
 	User findById(long id);
+	
+	public User findByUserName(String userName);
 
 
 
